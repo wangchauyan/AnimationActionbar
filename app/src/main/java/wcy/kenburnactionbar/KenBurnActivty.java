@@ -120,6 +120,8 @@ public class KenBurnActivty extends Activity {
     }
 
     public int getScrollY() {
+
+        // when listview set headerview, first child will be header view
         View c = mListView.getChildAt(0);
         if (c == null) {
             return 0;
@@ -128,12 +130,11 @@ public class KenBurnActivty extends Activity {
         int firstVisiblePosition = mListView.getFirstVisiblePosition();
         int top = c.getTop();
 
-        int headerHeight = 0;
         if (firstVisiblePosition >= 1) {
-            headerHeight = mFakeHeader.getHeight();
+            return mFakeHeader.getHeight();
         }
 
-        return -top + firstVisiblePosition * c.getHeight() + headerHeight;
+        return -top;
     }
 
     private void setupActionBar() {
